@@ -16,7 +16,7 @@ export const ContactList = () => {
     if(filter) {
         contacts = filterByName(contacts, filter);
     }
-    console.log(contacts);
+    console.log(contacts); 
 
     const onContactDelete = e => {
         const id = e.target.closest('button').id;
