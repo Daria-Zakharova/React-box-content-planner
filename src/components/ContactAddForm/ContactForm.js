@@ -1,7 +1,7 @@
 import { Formik, Form} from "formik";
 import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { addContact } from "redux/contacts-slice";
+import { addContact } from "redux/operations";
 import { getContacts } from "redux/selectors";
 import { NameIsInContacts } from "utils/check-by-name";
 import { schema } from "utils/validation";
@@ -14,11 +14,10 @@ export const ContactForm = () => {
   const onContactAdd = ({name, number}, {resetForm}) => {
     
     if(NameIsInContacts(contacts, name)) {
-      resetForm();
       return toast.error(`${name} is already in contacts`);
     }
 
-    dispatch(addContact(name, number));
+    dispatch(addContact({name, number}));
     resetForm();
   }
 

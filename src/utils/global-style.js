@@ -22,9 +22,7 @@ export const globalStyle = {
     },
 
     '#root': {
-        height: '100vh',
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center',
     }
-    };
+};

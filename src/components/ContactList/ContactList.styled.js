@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Contacts = styled.ul`
-padding: 60px 70px 30px 450px;
+padding: 60px 20px 30px 400px;
 font-family: 'Indie Flower', cursive;
 font-size: 22px;
 line-height: 31px;
@@ -13,6 +13,11 @@ padding-right: 40px;
 width: 100%;
 display: flex;
 justify-content: space-between;
+
+&.spinner {
+    justify-content: center;
+    color: transparent;
+}
 
 .name {
     font-weight: 700;
