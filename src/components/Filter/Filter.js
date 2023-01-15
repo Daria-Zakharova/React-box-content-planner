@@ -1,13 +1,13 @@
 import { FilterEl } from "./Filter.styled";
 import {MdPersonSearch} from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { getContacts, getFilter } from "redux/selectors";
+import { selectContacts, selectFilter } from "redux/selectors";
 import { changeFilter } from "redux/filter-slice";
 
 export const Filter = () => {
     const dispatch = useDispatch();
-    const contacts = useSelector(getContacts);
-    const filter = useSelector(getFilter);
+    const contacts = useSelector(selectContacts);
+    const filter = useSelector(selectFilter);
     
     return (
         <>

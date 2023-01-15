@@ -6,12 +6,12 @@ import { Filter } from "components/Filter/Filter";
 import { ContactList } from "components/ContactList/ContactList";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchContacts } from "redux/operations";
-import { getError} from "redux/selectors";
+import { selectError} from "redux/selectors";
 
 
 export const App = () => {
   const dispatch = useDispatch();
-  const error = useSelector(getError);
+  const error = useSelector(selectError);
 
   useEffect(() => {
     dispatch(fetchContacts());

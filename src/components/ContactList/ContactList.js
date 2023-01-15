@@ -1,22 +1,16 @@
 import { Contacts, ContactItem } from "./ContactList.styled";
 import {FaWindowClose} from "react-icons/fa"
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts, getFilter, getIsLoading } from 'redux/selectors';
-import { filterByName } from 'utils/filter-by-name';
+import { selectFilteredContacts, selectIsLoading } from 'redux/selectors';
 import { deleteContact } from 'redux/operations';
 import { BeatLoader } from "react-spinners";
 
 export const ContactList = () => {
     const dispatch = useDispatch();
 
-    const isLoading = useSelector(getIsLoading);
+    const isLoading = useSelector(selectIsLoading);
 
-    const filter = useSelector(getFilter);
-    let contacts = useSelector(getContacts);
-    if(filter) {
-        contacts = filterByName(contacts, filter);
-    }
-    console.log(contacts); 
+    let contacts = useSelector(selectFilteredContacts);
 
     const onContactDelete = e => {
         const id = e.target.closest('button').id;
