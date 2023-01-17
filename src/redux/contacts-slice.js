@@ -1,4 +1,5 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { sliceActionType } from "utils/slice-action-type";
 import { fetchContacts, addContact, deleteContact } from "./operations";
 
 const extraActions = [fetchContacts, addContact, deleteContact];
@@ -6,13 +7,17 @@ const getActionByType = type => extraActions.map(action => action[type]);
 
 const contactsInititalState = {
     items: [],
-    isLoading: false,
+    isLoading: {
+        fetchContacts: false,
+        addContact: false,
+        deleteContact: false,
+    },
     error: null
 };
 
-const fulfilledReducer = state => {
-    state.isLoading = false;
+const fulfilledReducer = (state, action) => {
     state.error = null;
+    state.isLoading[sliceActionType(action.type)] = false;
 }
 
 const fetchFulfilledReducer = (state, action) => {
@@ -28,13 +33,13 @@ const deleteFulfilledReducer = (state, action) => {
     state.items.splice(deletedIdx, 1);
 };
 
-const pendingReducer = state => {
-    state.isLoading = true;
-};
+const pendingReducer = (state, action) => {
+    state.isLoading[sliceActionType(action.type)] = true;
+}
   
 const rejectedReducer = (state, action) => {
-    state.isLoading = false;
     state.error = action.payload;
+    state.isLoading[sliceActionType(action.type)] = false;
 };
 
 const contactsSlice = createSlice({

@@ -23,12 +23,12 @@ export const FilterEl = styled.div`
         display: block;
         width: 90%;
         min-width: 70%;
-        margin-top: 1px;
+        margin-top: 6px;
         padding-left: 34px;
         line-height: 26px;
-        border: 2px solid #11111177;
-        border-radius: 4px;
-        background-color: #44444411;
+        border: none;
+        border-bottom: 2px solid #11111177;
+        background-color: transparent;
         font-family: 'Indie Flower', cursive;
         font-size: 22px;
         font-weight: 700;

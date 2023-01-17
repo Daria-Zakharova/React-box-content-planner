@@ -1,5 +1,4 @@
 export const globalStyle = {
-
     '*': {
       boxSizing: 'border-box',},
 
@@ -24,5 +23,9 @@ export const globalStyle = {
     '#root': {
         display: 'flex',
         justifyContent: 'center',
+    },
+
+    button: {
+      cursor: 'pointer',
     }
 };

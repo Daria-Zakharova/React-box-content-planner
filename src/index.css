@@ -1,4 +1,22 @@
 @import-normalize; /* bring in normalize.css styles */
+@font-face {
+  font-family: "Roboto";
+  src: local("Roboto"), url("./fonts/Roboto/Roboto-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: local("Roboto"), url("./fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+  }
+  @font-face {
+    font-family: "Indie Flower";
+    src: local("Indie flower"), url("./fonts/Indie_Flower/IndieFlower-Regular.ttf") format("truetype");
+    font-display: swap;
+    }
+
 
 body {
   margin: 0;

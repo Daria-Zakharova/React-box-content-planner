@@ -49,11 +49,11 @@ export const Input = styled(Field)`
 
 export const AddContactBtn = styled.button`
     position: absolute;
+    align-items: baseline;
     left: 50%;
     bottom: 40px;
     transform: translateX(-50%);
-    padding: 4px;
-    display: block;
+    padding: 6px 30px;
     margin: 0 auto;
     align-self: center;
     border: 2px solid #00000022;

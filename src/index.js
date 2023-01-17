@@ -1,9 +1,10 @@
+import './index.css';
+import './fonts/Roboto/Roboto-Regular.ttf'
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Global} from '@emotion/react';
 import { globalStyle } from './utils/global-style'
 import { App } from 'components/App/App';
-import './index.css';
 import { Provider } from 'react-redux';
 import { store } from 'redux/store';
 

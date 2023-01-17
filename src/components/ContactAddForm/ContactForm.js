@@ -1,24 +1,26 @@
 import { Formik, Form} from "formik";
 import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
+import { BeatLoader } from "react-spinners";
 import { addContact } from "redux/operations";
-import { selectContacts } from "redux/selectors";
+import { selectContacts, selectIsLoadingAdd } from "redux/selectors";
 import { NameIsInContacts } from "utils/check-by-name";
 import { schema } from "utils/validation";
 import { AddContactWrap, Input, AddContactBtn, ErrorNotify } from "./ContactForm.styled";
 
 export const ContactForm = () => {
+  const isLoading = useSelector(selectIsLoadingAdd)
   const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
-  const onContactAdd = ({name, number}, {resetForm}) => {
+  const onContactAdd = async ({name, number}, {resetForm}) => {
     
     if(NameIsInContacts(contacts, name)) {
       return toast.error(`${name} is already in contacts`);
     }
-
-    dispatch(addContact({name, number}));
+    await dispatch(addContact({name, number}));
     resetForm();
+    toast.success(`Contact '${name}' has been added successfully`);
   }
 
   return (
@@ -47,7 +49,11 @@ export const ContactForm = () => {
                />
                <ErrorNotify name="number" component={"span"} />
              </label>
-             <AddContactBtn type="submit">Add</AddContactBtn>
+             <AddContactBtn type="submit" disabled={isLoading}>Add <BeatLoader loading={isLoading} color="#000a" size={3} speedMultiplier={0.7} cssOverride={{
+    bottom: 4,
+    position: 'absolute',
+    right: 6
+  }}/></AddContactBtn>
            </Form>      
       </Formik>
     </AddContactWrap>

@@ -14,6 +14,8 @@ width: 100%;
 display: flex;
 justify-content: space-between;
 
+opacity: ${({isDeleted}) => !isDeleted ? 1 : .5};
+
 &.spinner {
     justify-content: center;
     color: transparent;
@@ -25,7 +27,6 @@ justify-content: space-between;
     }
 
 .close-btn {
-    cursor: pointer;
     background-color: transparent;
     border: none;
     display: none;      
@@ -34,7 +35,13 @@ justify-content: space-between;
 &:hover .close-btn{    
     display: block;
     position: absolute;
-    right: 0;  
+    right: 0;
+    
+    &:disabled {
+        svg {
+            fill: grey;
+        }
+    }
 }
 
 `;
