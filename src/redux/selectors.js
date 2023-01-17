@@ -1,9 +1,11 @@
 import { filterByName } from "utils/filter-by-name";
 
 export const selectContacts = state => state.contacts.items;
+
 export const selectIsLoadingFetch = state => state.contacts.isLoading.fetchContacts;
 export const selectIsLoadingAdd = state => state.contacts.isLoading.addContact;
-// export const selectIsLoadingDelete = state => state.contacts.isLoading.deleteContact;
+// export const selectIsLoadingDelete = state => state.contacts.isLoading.deleteContact; //unused
+
 export const selectError = state => state.contacts.error;
 
 export const selectFilter = state => state.filter;
