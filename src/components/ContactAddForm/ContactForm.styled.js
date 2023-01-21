@@ -1,24 +1,26 @@
 import styled from "@emotion/styled";
-import noteBg from "../../img/note.png";
+import YellowNoteBg from "img/note-removebg-yellow.png";
+import GreenNoteBg from "img/note-removebg-green.png";
+import VioletNoteBg from "img/note-removebg-violet.png";
 import { Field, ErrorMessage } from "formik";
 
 
-export const AddContactWrap = styled.div`
+export const FormWrap = styled.div`
     position: absolute;
     padding: 20px 40px;
     width: 330px;
     aspect-ratio: 1;
-    inset: 35px 40px;
-    font-size: 20px;
+    inset: 70px 40px;
+    font-size: ${({fields}) => fields === 2 ? '20px' : '16px'};
     color: #000000aa;
-    background-image: url(${noteBg});
+    background-image: ${({color}) => color === 'green' ? `url(${GreenNoteBg})`:
+        color === 'violet' ? `url(${VioletNoteBg})` : `url(${YellowNoteBg})`};
     background-size: contain;
     background-repeat: no-repeat;
 
     h2 {
         margin-bottom: 10px;
         text-align: center;
-        font-weight: 600;
         font-size: 20px;
         color: #000000cc;
     }
@@ -43,11 +45,11 @@ export const Input = styled(Field)`
         border: 1px dotted #00000066;
     }
     &:invalid {
-        background-color: red;
+        border: 1px dotted red;
     }
 `;
 
-export const AddContactBtn = styled.button`
+export const SubmitBtn = styled.button`
     position: absolute;
     align-items: baseline;
     left: 50%;

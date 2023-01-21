@@ -2,11 +2,11 @@ import { Formik, Form} from "formik";
 import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { BeatLoader } from "react-spinners";
-import { addContact } from "redux/operations";
-import { selectContacts, selectIsLoadingAdd } from "redux/selectors";
+import { addContact } from "redux/contacts-and-filtering/operations";
+import { selectContacts, selectIsLoadingAdd } from "redux/contacts-and-filtering/selectors";
 import { NameIsInContacts } from "utils/check-by-name";
-import { schema } from "utils/validation";
-import { AddContactWrap, Input, AddContactBtn, ErrorNotify } from "./ContactForm.styled";
+import { addContactSchema } from "utils/validation";
+import {FormWrap, Input, SubmitBtn, ErrorNotify } from "./ContactForm.styled";
 
 export const ContactForm = () => {
   const isLoading = useSelector(selectIsLoadingAdd)
@@ -24,14 +24,14 @@ export const ContactForm = () => {
   }
 
   return (
-    <AddContactWrap>
+    <FormWrap color = "default" fields={2}>
       <h2>Add contact</h2>
       <Formik
           initialValues={{
               name: '',
               number: '',
           }}
-          validationSchema ={schema}
+          validationSchema ={addContactSchema}
           onSubmit={onContactAdd}
        >      
            <Form>
@@ -49,13 +49,13 @@ export const ContactForm = () => {
                />
                <ErrorNotify name="number" component={"span"} />
              </label>
-             <AddContactBtn type="submit" disabled={isLoading}>Add <BeatLoader loading={isLoading} color="#000a" size={3} speedMultiplier={0.7} cssOverride={{
+             <SubmitBtn type="submit" disabled={isLoading}>Add <BeatLoader loading={isLoading} color="#000a" size={3} speedMultiplier={0.7} cssOverride={{
     bottom: 4,
     position: 'absolute',
     right: 6
-  }}/></AddContactBtn>
+  }}/></SubmitBtn>
            </Form>      
       </Formik>
-    </AddContactWrap>
+    </FormWrap>
  )
 }

@@ -13,6 +13,10 @@ export const globalStyle = {
       margin: 0,
       padding: 0,
     },
+
+    ul : {
+      listStyle: 'none',
+    },
     
     img: {
       display: 'block',
@@ -27,5 +31,12 @@ export const globalStyle = {
 
     button: {
       cursor: 'pointer',
+    },
+
+    a: {
+      color: 'inherit',
+      textDecoration: 'none',
     }
+
+    
 };

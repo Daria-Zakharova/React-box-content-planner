@@ -1,8 +1,8 @@
 import { Contacts, ContactItem } from "./ContactList.styled";
 import {FaWindowClose} from "react-icons/fa"
 import { useDispatch, useSelector } from 'react-redux';
-import { selectFilteredContacts, selectIsLoadingFetch} from 'redux/selectors';
-import { deleteContact, fetchContacts } from 'redux/operations';
+import { selectFilteredContacts, selectIsLoadingFetch} from 'redux/contacts-and-filtering/selectors';
+import { deleteContact, fetchContacts } from 'redux/contacts-and-filtering/operations';
 import { BeatLoader } from "react-spinners";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";

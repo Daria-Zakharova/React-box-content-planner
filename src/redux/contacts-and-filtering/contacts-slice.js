@@ -3,7 +3,10 @@ import { sliceActionType } from "utils/slice-action-type";
 import { fetchContacts, addContact, deleteContact } from "./operations";
 
 const extraActions = [fetchContacts, addContact, deleteContact];
-const getActionByType = type => extraActions.map(action => action[type]);
+const getActionByType = type => {const result = extraActions.map(action => action[type]);
+    console.log(result);
+    return result
+};
 
 const contactsInititalState = {
     items: [],
@@ -12,7 +15,7 @@ const contactsInititalState = {
         addContact: false,
         deleteContact: false,
     },
-    error: null
+    error: null,
 };
 
 const fulfilledReducer = (state, action) => {
