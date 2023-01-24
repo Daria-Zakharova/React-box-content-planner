@@ -22,7 +22,6 @@ export const ContactForm = () => {
 
   const addFormObj = {
     stickerColor: "default",
-    fields: 2,
     formHeading: "Add contact",
     submitBtnTxt: "Add",
     validationSchema: addContactSchema,

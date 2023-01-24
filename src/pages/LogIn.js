@@ -23,7 +23,6 @@ export default function LoginForm () {
 
     const logInFormObj = {
       stickerColor: "green",
-      fields: 2,
       formHeading: "Log in",
       submitBtnTxt: "Log in",
       validationSchema: loginSchema,

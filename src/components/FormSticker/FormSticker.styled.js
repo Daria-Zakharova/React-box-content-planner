@@ -11,7 +11,7 @@ export const FormWrap = styled.div`
     width: 330px;
     aspect-ratio: 1;
     inset: 70px 40px;
-    font-size: ${({fields}) => fields === 2 ? '20px' : '16px'};
+    font-size: ${({extraContent}) => extraContent ? '16px' : '20px'};
     color: #000000aa;
     background-image: ${({color}) => color === 'green' ? `url(${GreenNoteBg})`:
         color === 'violet' ? `url(${VioletNoteBg})` : `url(${YellowNoteBg})`};
@@ -53,7 +53,7 @@ export const SubmitBtn = styled.button`
     position: absolute;
     align-items: baseline;
     left: 50%;
-    bottom: 40px;
+    bottom: ${({extraContent}) => extraContent? "40px" : "60px"};
     transform: translateX(-50%);
     padding: 6px 30px;
     margin: 0 auto;
@@ -66,7 +66,6 @@ export const SubmitBtn = styled.button`
     color: #000000aa;
 
     &:hover {
-        /* background-color: #8bc34a69; */
         background-color: #8bc34ab3;
         border-color:#00000033;
         box-shadow: rgb(0 0 0 / 20%) 0px 3px 1px -2px, rgb(0 0 0 / 14%) 0px 2px 2px 0px, rgb(0 0 0 / 12%) 0px 1px 5px 0px;

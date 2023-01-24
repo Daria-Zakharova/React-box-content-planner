@@ -15,7 +15,6 @@ export default function SignUpForm() {
 
     const signUpFormObj = {
       stickerColor: "violet",
-      fields: 3,
       formHeading: "Register",
       submitBtnTxt: "Submit",
       validationSchema: signUpSchema,
