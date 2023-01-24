@@ -32,6 +32,7 @@ export const FormStyled = styled(Form)`
         line-height: 31px;
         border: none;
         border-bottom: dotted 2px black;
+        color: ${({submitting}) => submitting === "true" ? 'green' : 'inherit'}
     }
     
     button {

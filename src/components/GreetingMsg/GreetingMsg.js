@@ -16,8 +16,8 @@ export const GreetingMsg = () => {
         !username && setUsername(newName);
     }, [newName, username]);
 
-    const messageColumn = (<p>Hi! I am still little pet project, but I am growing and developing to be simple to use and simply useful.<br/></p>);
-    const message = (<p>Now you don't need to loose all those scraps of paper with Very Important Contacts any more, just <Link to="signup">tell me your name</Link> and add them to the Contacts page, then don't put me to the bookmarks and I'll get them lost for you. <br/><br/> P.S But I'll keep remembering everything you tell me in case you ever <Link to="login">come back.</Link></p>);
+    const messageColumn = (<p>Hi! I am still a little pet project, but I am growing and developing to be simple to use and simply useful.<br/></p>);
+    const message = (<p>Now you don't need to loose all those scraps of paper with Very Important Contacts any more, just <Link to="signup">tell me your name</Link>, add your data to the Contacts page, then don't add me to the bookmarks and I'll get them lost for you. <br/><br/> P.S But I'll keep remembering everything you tell me in case you ever <Link to="login">come back.</Link></p>);
     const messageColumnForUser = (<p> Nice to meet you, {username ? capitalized(username) : 'Username'}! <br/>What time is it? This seems like a good time to write down all your <Link to="/contacts">Contacts</Link>.</p>);
 
     return (
