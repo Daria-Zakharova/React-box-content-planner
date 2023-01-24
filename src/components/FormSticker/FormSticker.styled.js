@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import YellowNoteBg from "img/note-removebg-yellow.png";
-import GreenNoteBg from "img/note-removebg-green.png";
-import VioletNoteBg from "img/note-removebg-violet.png";
+import YellowNoteBg from "img/yellow.png";
+import GreenNoteBg from "img/green.png";
+import VioletNoteBg from "img/pink.png";
 import { Field, ErrorMessage } from "formik";
 
 
@@ -28,7 +28,7 @@ export const FormWrap = styled.div`
     label {
         display: block;
         font-weight: 700;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
     }
 `;
 
@@ -66,7 +66,8 @@ export const SubmitBtn = styled.button`
     color: #000000aa;
 
     &:hover {
-        background-color: #8bc34a69;
+        /* background-color: #8bc34a69; */
+        background-color: #8bc34ab3;
         border-color:#00000033;
         box-shadow: rgb(0 0 0 / 20%) 0px 3px 1px -2px, rgb(0 0 0 / 14%) 0px 2px 2px 0px, rgb(0 0 0 / 12%) 0px 1px 5px 0px;
 
@@ -74,6 +75,7 @@ export const SubmitBtn = styled.button`
 `;
 
 export const ErrorNotify = styled(ErrorMessage)`
+    position: absolute;
     font-weight: 400;
     font-size: 12px;
     color: red;

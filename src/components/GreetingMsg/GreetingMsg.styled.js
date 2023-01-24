@@ -1,16 +1,18 @@
 import styled from "@emotion/styled";
-/* 
-export const Message = Contacts.withComponent('div'); */
 
 export const Greeting = styled.div`
-    margin-top: -82px;
-    padding: 20px 40px 30px 400px;
+    margin-top: -76px;
+    padding: 20px 40px 30px 420px;
     font-family: 'Indie Flower', cursive;
     font-size: 22px;
     line-height: 31px;
 
     img {
-        margin: 0 0 -148px auto;
+        transition: transform 300ms ease-in-out, filter 300ms ease-in-out;
+        &:hover {
+            transform: translateY(-10px) scaleY(1.1);
+            filter: saturate(1.2);
+        }
     }
 
     a {

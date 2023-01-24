@@ -1,6 +1,5 @@
 import { nanoid } from "@reduxjs/toolkit";
-import { NavLink} from "react-router-dom";
-import { NavList } from "./PagesNav.styled";
+import { NavList, NavSticker } from "./PagesNav.styled";
 
 export const PagesNav = ({links}) => {
 
@@ -9,7 +8,7 @@ export const PagesNav = ({links}) => {
             <NavList color = '#5ca8bf'>
                 {links.map(link => (
                     <li key ={nanoid()}>
-                        <NavLink to={link === 'home' ? '/' : `/${link}`}>{link}</NavLink>
+                        <NavSticker to={link === 'home' ? '/' : `/${link}`}>{link}</NavSticker>
                     </li>))
                 }
             </NavList>

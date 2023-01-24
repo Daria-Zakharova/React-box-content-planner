@@ -1,48 +1,52 @@
+import { sliceActionType } from "utils/slice-action-type";
+
 const { createSlice, isAnyOf } = require("@reduxjs/toolkit");
 const { logIn, signUp, logOut, refreshUser } = require("./operations");
-
-const extraActions = [signUp, logIn, logOut, refreshUser];
-const getActionByType = type => {console.log(extraActions.map(action => action[type]));
-return extraActions.map(action => action[type])};
 
 const authInitialState = {
     user: { 
         name: null, email: null },
     token: null,
+    isLoading: {
+        logIn: false, signUp: false},
     isLoggedIn: false,
     isRefreshing: false,
     error: null,
 };
 
-const fulfilledReducer = (state, action) => {
-    state.user.name = action.payload.user.name;
-    state.user.email = action.payload.user.email;
+const logInFulfilledReducer = (state, action) => {
+    state.user = {...action.payload.user};
     state.token = action.payload.token;
     state.isLoggedIn = true;
+    state.isLoading[sliceActionType(action.type)] = false;
+    state.error = null;
 }
 
-const logInFulfilledReducer = (state, action) => {
-    state.token = action.payload.token;
-}
-
-const refreshFulfilledReducer = state => {
+const refreshFulfilledReducer = (state, action) => {
+    state.user = {...action.payload};
     state.isRefreshing = false;
+    state.isLoggedIn = true;
+    state.error = null;
 }
 
 const logOutFulfilledReducer = state => {
     state.user = { name: null, email: null };
     state.token = null;
     state.isLoggedIn = false;
+    state.error = null;
+}
+
+const logInPendingReducer = (state, action) => {
+    state.isLoading[sliceActionType(action.type)] = true;
 }
 
 const refresPendingReducer = state => {
     state.isRefreshing = true;
 }
 
-/* const rejectedReducer = (state, action) => {
-    console.log(action, 'rej');
+const rejectedReducer = (state, action) => {
     state.error = action.payload;
-} */
+}
 
 const refreshRejectedReducer = state => {
     state.isRefreshing = false;
@@ -57,9 +61,9 @@ const authSlice = createSlice({
         .addCase(refreshUser.fulfilled, refreshFulfilledReducer)
         .addCase(refreshUser.rejected, refreshRejectedReducer)
         .addCase(logOut.fulfilled, logOutFulfilledReducer)
+        .addMatcher(isAnyOf(...[logIn.pending, signUp.pending]), logInPendingReducer)
         .addMatcher(isAnyOf(...[logIn.fulfilled, signUp.fulfilled]), logInFulfilledReducer)
-        .addMatcher(isAnyOf(...getActionByType('fulfilled')), fulfilledReducer)
-        // .addMatcher(isAnyOf(...getActionByType('rejected'), rejectedReducer));
+        .addMatcher(isAnyOf(...[signUp.rejected, logIn.rejected, logOut.rejected]), rejectedReducer);
         
     }
 })

@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
 
 const Heading = styled.h1`
-    text-align: right;
-    margin: 30px 230px 70px auto;
+    width: 50%;
+    margin: 30px 20px 70px auto;
     font-family: 'Indie Flower', cursive;
     font-size: 30px;
+    text-align: center;
     text-decoration: underline;
     text-decoration-skip-ink: none;
     text-transform: capitalize;

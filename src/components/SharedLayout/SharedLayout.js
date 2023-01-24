@@ -1,23 +1,20 @@
 import { AppCard } from "./SharedLayout.styled"
 import { AsideNavWrap } from "components/navigation/AsideNavWrap/AsideNavWrap"
-import { useEffect } from "react"
-import { toast, Toaster } from "react-hot-toast"
-import { useSelector } from "react-redux"
+import { Toaster } from "react-hot-toast"
 import { Outlet } from "react-router-dom"
-import { selectError } from "redux/contacts-and-filtering/selectors"
+import { useSelector } from "react-redux"
+import { selectIsRefreshing } from "redux/auth/selectors"
 
 export const SharedLayout = () => {
-    const error = useSelector(selectError);
-  
-    useEffect(() => {
-        error && toast.error(error);
-    }, [error]);
-
+    const isRefreshing = useSelector(selectIsRefreshing);
     return (
         <AppCard>
             <Toaster/>
-            <AsideNavWrap/>                       
-            <Outlet/>
+            {!isRefreshing && 
+            <>
+                <AsideNavWrap/>                       
+                <Outlet/>
+            </>}
         </AppCard>
     );
 }

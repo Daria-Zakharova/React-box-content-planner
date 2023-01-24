@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Contacts = styled.ul`
-padding: 60px 20px 30px 400px;
+padding: 60px 10px 30px 400px;
 font-family: 'Indie Flower', cursive;
 font-size: 22px;
 line-height: 31px;
@@ -9,7 +9,7 @@ line-height: 31px;
 
 export const ContactItem = styled.li`
 position: relative;
-padding-right: 40px;
+padding-right: 50px;
 width: 100%;
 display: flex;
 justify-content: space-between;
@@ -26,7 +26,11 @@ opacity: ${({isDeleted}) => !isDeleted ? 1 : .5};
     margin-right: 30px;
     }
 
-.close-btn {
+.number {
+    padding-right: 30px;
+}
+
+.close-btn, .update-btn {
     background-color: transparent;
     border: none;
     display: none;      
@@ -36,6 +40,18 @@ opacity: ${({isDeleted}) => !isDeleted ? 1 : .5};
     display: block;
     position: absolute;
     right: 0;
+    
+    &:disabled {
+        svg {
+            fill: grey;
+        }
+    }
+}
+
+&:hover .update-btn{    
+    display: block;
+    position: absolute;
+    right: 25px;
     
     &:disabled {
         svg {

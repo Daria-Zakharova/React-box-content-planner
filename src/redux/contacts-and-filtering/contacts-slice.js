@@ -1,18 +1,16 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { sliceActionType } from "utils/slice-action-type";
-import { fetchContacts, addContact, deleteContact } from "./operations";
+import { fetchContacts, addContact, deleteContact, updateContact } from "./operations";
 
-const extraActions = [fetchContacts, addContact, deleteContact];
-const getActionByType = type => {const result = extraActions.map(action => action[type]);
-    console.log(result);
-    return result
-};
+const extraActions = [fetchContacts, addContact, updateContact, deleteContact];
+const getActionByType = type => extraActions.map(action => action[type]);
 
 const contactsInititalState = {
     items: [],
     isLoading: {
         fetchContacts: false,
         addContact: false,
+        updateContact: false,
         deleteContact: false,
     },
     error: null,
@@ -30,6 +28,11 @@ const fetchFulfilledReducer = (state, action) => {
 const addFulfilledReducer = (state, action) => {
     state.items.push(action.payload);
 };
+
+const updateFulfilledReducer = (state, action) => {
+    const idx = state.items.findIndex(item => item.id === action.payload.id);
+    state.items[idx] = {...action.payload};
+}
 
 const deleteFulfilledReducer = (state, action) => {
     const deletedIdx = state.items.findIndex(item => item.id === action.payload);
@@ -52,6 +55,7 @@ const contactsSlice = createSlice({
         builder
         .addCase(fetchContacts.fulfilled, fetchFulfilledReducer)
         .addCase(addContact.fulfilled, addFulfilledReducer)
+        .addCase(updateContact.fulfilled, updateFulfilledReducer)
         .addCase(deleteContact.fulfilled, deleteFulfilledReducer)
         .addMatcher(isAnyOf(...getActionByType('fulfilled')), fulfilledReducer)
         .addMatcher(isAnyOf(...getActionByType('pending')), pendingReducer)

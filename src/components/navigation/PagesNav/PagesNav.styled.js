@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { NavLink } from "react-router-dom";
 
 export const NavList = styled.ul`
 
@@ -61,19 +62,21 @@ export const NavList = styled.ul`
 }
 
 --color-bg: ${({color}) => color};
-
+width: 150px;
 display: flex;
 flex-direction: column;
 gap: 20px;
-font-size: 20px;
-font-weight: 700;
+`;
 
-a {
+export const NavSticker = styled(NavLink)`
     display: block;
     padding: 20px 20px 20px 50px;
     border-radius: 0 10px 10px 0;
     
     text-transform: capitalize;
+    font-size: 20px;
+    font-weight: 700;
+    white-space: nowrap;
     transition: transform 300ms linear;
     box-shadow: none;
     transform: translateX(0);
@@ -89,5 +92,4 @@ a {
         text-decoration: underline;
     }
 
-}
 `;
