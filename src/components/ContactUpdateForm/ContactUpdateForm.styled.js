@@ -9,11 +9,18 @@ export const FormStyled = styled(Form)`
 
     input {
         padding: 0;
+
+        &:hover, &:focus {
+            outline: 1px dotted #00000066;
+        }
+        &:invalid {
+            border: 1px dotted red;
+        }
     }
 
     label:first-of-type {
         input{
-            margin-right: 30px;
+            margin-right: 20px;
             font-weight: 700;
         }
     }
@@ -31,12 +38,26 @@ export const FormStyled = styled(Form)`
         font-size: 22px;
         line-height: 31px;
         border: none;
-        border-bottom: dotted 2px black;
+        border-bottom: dotted 1px black;
         color: ${({submitting}) => submitting === "true" ? 'green' : 'inherit'}
     }
     
     button {
         background-color: transparent;
         border: none;
+    }
+
+    span {
+        position: absolute;
+        top: 100%;
+        z-index: 1;
+        display: block;
+        padding: 3px;
+        font-family: Roboto;
+        font-size: 12px;
+        line-height: 1;
+        box-shadow: 0 1px 3px grey;
+        background-color: white;
+        color: red;
     }
 `;

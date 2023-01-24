@@ -5,7 +5,7 @@ import { signUp } from "redux/auth/operations";
 import { selectIsLoadingSignUp } from "redux/auth/selectors";
 import { signUpSchema } from "utils/validation";
 
-export const SignUpForm = () => {
+export default function SignUpForm() {
     const dispatch = useDispatch();
     const onSignUp = async ({name, email, password}, {resetForm}) => {
         await dispatch(signUp({name, email, password}));

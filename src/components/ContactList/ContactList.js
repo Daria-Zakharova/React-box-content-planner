@@ -1,5 +1,4 @@
 import { Contacts, ContactItem } from "./ContactList.styled";
-import {FaWindowClose, FaEdit} from "react-icons/fa"
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts, selectFilteredContacts, selectIsLoadingFetch, selectIsLoadingUpdate} from 'redux/contacts-and-filtering/selectors';
 import { deleteContact, fetchContacts } from 'redux/contacts-and-filtering/operations';
@@ -9,14 +8,14 @@ import { toast } from "react-hot-toast";
 import { selectLoggedIn } from "redux/auth/selectors";
 import { capitalized } from "utils/formatting/capitalize";
 import { ContactUpdateForm } from "components/ContactUpdateForm/ContactUpdateForm";
+import { ContactItemControls } from "components/ContactItemControls/ContactItemControls";
 
 export const ContactList = () => {
     const dispatch = useDispatch();
     const [isDeleted, setIsDeleted] = useState(null);
 
     const [isUpdated, setIsUpdated] = useState(null);
-    const [updatedName, setUpdatedName] = useState(null);
-    const [updatedNumber, setUpdatedNumber] = useState(null);
+    const [updatedData, setUpdatedData] = useState({name: null, number: null});
 
     const contacts = useSelector(selectContacts);
     const visibleContacts = useSelector(selectFilteredContacts);
@@ -31,6 +30,10 @@ export const ContactList = () => {
     const onContactDelete = async e => {
         const id = e.target.closest('button').id;
         setIsDeleted(id);
+        if (isDeleted === isUpdated) {
+            setIsUpdated(null);
+            setUpdatedData({name: null, number: null});
+        }
         await dispatch(deleteContact(id));
         setIsDeleted(null);
         toast.success('Contact has been deleted.');
@@ -38,16 +41,14 @@ export const ContactList = () => {
 
     const initContactUpdate = e => {
         const id = e.target.closest('button').id;        
-        const contact = contacts.find(contact => contact.id === id);
-        setUpdatedName(contact.name);
-        setUpdatedNumber(contact.number);
+        const {name, number} = contacts.find(contact => contact.id === id);
+        setUpdatedData({name, number});
         setIsUpdated(id);
     }
 
     const onContactUpdateFinished = () => {     
         setIsUpdated(null);
-        setUpdatedName(null);
-        setUpdatedNumber(null);
+        setUpdatedData({name: null, number: null});
         toast.success('Contact was updated');
     }
 
@@ -56,12 +57,12 @@ export const ContactList = () => {
             {
                 name: 'name',
                 type: "text",
-                initialValue: updatedName,
+                initialValue: updatedData.name,
             },
             {
                 name: "number",
                 type: "tel",
-                initialValue: updatedNumber,
+                initialValue: updatedData.number,
             }
         ],
         onSubmitSuccess: onContactUpdateFinished,
@@ -78,8 +79,8 @@ export const ContactList = () => {
                     <span className="name">{capitalized(name)}</span>
                     <span className="number">{number}</span>
                 </>)}
-                <button className="update-btn" type="button" id={id} onClick={initContactUpdate} disabled={!!isUpdated}><FaEdit size={20}/></button>
-                <button className="close-btn" type="button" id={id} onClick={onContactDelete} disabled={!!isDeleted || !!isUpdated}><FaWindowClose color="red" size={20}/></button>
+                <ContactItemControls id = {id} onUpdate = {initContactUpdate} onDelete = {onContactDelete} isUpdated = {isUpdated === id} isDeletedId = {isDeleted === id}/>
+                
             </ContactItem>)}
             <ContactItem className="spinner">.<BeatLoader loading={isLoading} margin={3} size={10} color='blue'/></ContactItem>
         </Contacts>

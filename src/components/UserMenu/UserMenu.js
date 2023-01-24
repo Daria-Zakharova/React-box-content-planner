@@ -11,7 +11,7 @@ export const UserMenu = () => {
 
     return (<UserMenuList>
         <UserInfo color="#f9ca45"><BsPersonCircle/> {capitalized(username)}</UserInfo>
-        <UserInfo className={"logout-btn"} color="#e97a7a" onClick={() => { dispatch(logOut()); }}>Log out</UserInfo>
+        <UserInfo as="button" className={"logout-btn"} color="#e97a7a" onClick={() => { dispatch(logOut()); }}>Log out</UserInfo>
     </UserMenuList>)
 }
 

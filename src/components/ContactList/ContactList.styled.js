@@ -13,8 +13,11 @@ padding-right: 50px;
 width: 100%;
 display: flex;
 justify-content: space-between;
-
 opacity: ${({isDeleted}) => !isDeleted ? 1 : .5};
+
+&:hover ul{
+    display: block;
+}
 
 &.spinner {
     justify-content: center;
@@ -28,36 +31,4 @@ opacity: ${({isDeleted}) => !isDeleted ? 1 : .5};
 
 .number {
     padding-right: 30px;
-}
-
-.close-btn, .update-btn {
-    background-color: transparent;
-    border: none;
-    display: none;      
-}
-
-&:hover .close-btn{    
-    display: block;
-    position: absolute;
-    right: 0;
-    
-    &:disabled {
-        svg {
-            fill: grey;
-        }
-    }
-}
-
-&:hover .update-btn{    
-    display: block;
-    position: absolute;
-    right: 25px;
-    
-    &:disabled {
-        svg {
-            fill: grey;
-        }
-    }
-}
-
-`;
+}`;

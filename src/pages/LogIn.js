@@ -7,7 +7,7 @@ import { selectIsLoadingLogIn, selectUser } from "redux/auth/selectors";
 import { capitalized } from "utils/formatting/capitalize";
 import { loginSchema } from "utils/validation";
 
-export const LoginForm = () => {
+export default function LoginForm () {
   const dispatch = useDispatch();
   const username = useSelector(selectUser).name;
   const [name, setName] = useState('');

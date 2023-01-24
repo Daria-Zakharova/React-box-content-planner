@@ -11,7 +11,7 @@ export const UserInfo = styled.div`
     gap: 10px;
     --color-bg: ${({color}) => color};
     padding: 20px;
-    padding-left: 60px;       
+    padding-left: 50px;       
     text-transform: capitalize;
     font-size: 20px;
     font-weight: 700;
@@ -19,23 +19,23 @@ export const UserInfo = styled.div`
     background-color: white;
     background-image: linear-gradient(to right, transparent 0, transparent 30px, var(--color-bg) 30px);
     
-    &.logout-btn {
+    button& {
         width: 150px;
-        border-radius: 0 10px 10px 0; 
+        border-radius: 0 10px 10px 0;
+        border: none; 
     
-        &:hover {
+        &:hover, &:focus {
             filter: saturate(1.2);
             text-decoration: underline;
             text-decoration-skip-ink: none;
         }
     }
 
-    &:first-of-type::after {
+    &:not(button)::after {
         content: "";
         position: absolute;
         left: 100%;
         top: 0;
-        /* width: 100px; */
         height: 1px;
         border-top: solid var(--color-bg) 31px;
         border-bottom: solid var(--color-bg) 31px;
