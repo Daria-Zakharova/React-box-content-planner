@@ -18,7 +18,7 @@ export const Page404 = ({seconds}) => {
     return <>
         <Page>
         <img src={img404} alt = 'Page not found' width='200'/>
-        <div>Something is wrong.<br/>Don't panic! Our fastest bookworms will get you directly <Link style = {{fontWeight: 700}} to = "/">Home</Link> in {counter} seconds.</div>
+        <div>Something is wrong. You happened to find an unexisting page.<br/>Don't panic! Our fastest bookworms will get you directly <Link style = {{fontWeight: 700}} to = "/">Home</Link> in {counter} seconds.</div>
         </Page>
     </>
 }

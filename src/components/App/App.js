@@ -9,12 +9,12 @@ import { RestrictedRoute } from "components/Routes/RestrictedRoute";
 import { PrivateRoute } from "components/Routes/PrivateRoute";
 import { selectAuthError } from "redux/auth/selectors";
 import { selectIsRefreshing } from "redux/auth/selectors"
+import PageNotFound from "pages/PageNotFound";
 
 const Home = lazy(() => import('pages/Home'));
 const LoginForm = lazy(() => import('pages/LogIn'));
 const SignUpForm = lazy(() => import('pages/SignUp'));
 const Contacts = lazy(() => import('pages/Contacts'));
-const PageNotFound = lazy(() => import('pages/404'));
 
 export const App = () => {
   const error = useSelector(selectError);

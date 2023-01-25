@@ -7,6 +7,7 @@ import { Suspense } from "react"
 
 export const SharedLayout = () => {
     return (
+        
         <AppCard>
             <Toaster/>
             <AsideNavWrap/>                       
@@ -14,5 +15,6 @@ export const SharedLayout = () => {
                 <Outlet/>
             </Suspense>
         </AppCard>
+        
     );
 }
