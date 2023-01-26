@@ -47,6 +47,7 @@ const refresPendingReducer = state => {
 
 const rejectedReducer = (state, action) => {
     state.error = action.payload;
+    state.isLoading[sliceActionType(action.type)] = false;
 }
 
 const refreshRejectedReducer = state => {
