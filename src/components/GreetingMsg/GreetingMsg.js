@@ -11,7 +11,7 @@ export const GreetingMsg = () => {
     const heading = "Hello! I'm your new phonebook";
     const isLoggedIn = useSelector(selectLoggedIn);
     const [username, setUsername] = useState('');
-    const newName =  useSelector(selectUser).name;
+    const newName =  useSelector(selectUser);
     useEffect(() => {
         !username && setUsername(newName);
     }, [newName, username]);

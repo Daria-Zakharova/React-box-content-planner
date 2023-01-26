@@ -1,0 +1,1 @@
+export const unified = str => str.trim().replace(/\s+/g, ' ').toLowerCase();

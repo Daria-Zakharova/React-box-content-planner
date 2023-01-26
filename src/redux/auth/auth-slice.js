@@ -8,7 +8,7 @@ const authInitialState = {
         name: null, email: null },
     token: null,
     isLoading: {
-        logIn: false, signUp: false},
+        login: false, signup: false, logout: false},
     isLoggedIn: false,
     isRefreshing: false,
     error: null,
@@ -34,6 +34,7 @@ const logOutFulfilledReducer = state => {
     state.token = null;
     state.isLoggedIn = false;
     state.error = null;
+    state.isLoading.logout = false;
 }
 
 const logInPendingReducer = (state, action) => {
@@ -61,7 +62,7 @@ const authSlice = createSlice({
         .addCase(refreshUser.fulfilled, refreshFulfilledReducer)
         .addCase(refreshUser.rejected, refreshRejectedReducer)
         .addCase(logOut.fulfilled, logOutFulfilledReducer)
-        .addMatcher(isAnyOf(...[logIn.pending, signUp.pending]), logInPendingReducer)
+        .addMatcher(isAnyOf(...[logIn.pending, signUp.pending, logOut.pending]), logInPendingReducer)
         .addMatcher(isAnyOf(...[logIn.fulfilled, signUp.fulfilled]), logInFulfilledReducer)
         .addMatcher(isAnyOf(...[signUp.rejected, logIn.rejected, logOut.rejected]), rejectedReducer);
         

@@ -20,6 +20,8 @@ export const UserInfo = styled.div`
     background-image: linear-gradient(to right, transparent 0, transparent 30px, var(--color-bg) 30px);
     
     button& {
+        position: relative;
+        display: flex;
         width: 150px;
         border-radius: 0 10px 10px 0;
         border: none; 

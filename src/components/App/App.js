@@ -7,7 +7,6 @@ import { SharedLayout } from "components/SharedLayout/SharedLayout";
 import { refreshUser } from "redux/auth/operations";
 import { RestrictedRoute } from "components/Routes/RestrictedRoute";
 import { PrivateRoute } from "components/Routes/PrivateRoute";
-import { selectAuthError } from "redux/auth/selectors";
 import { selectIsRefreshing } from "redux/auth/selectors"
 import PageNotFound from "pages/PageNotFound";
 
@@ -18,7 +17,6 @@ const Contacts = lazy(() => import('pages/Contacts'));
 
 export const App = () => {
   const error = useSelector(selectError);
-  const authError = useSelector(selectAuthError);
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
 
@@ -28,8 +26,7 @@ export const App = () => {
   }, [dispatch]);
   useEffect(() => {
     error && toast.error(`Sorry. ${error}`);
-    authError && toast.error(`Authorization failed. ${authError}`);
-  }, [error, authError])
+  }, [error, ])
 
   return !isRefreshing ? <Routes>
     <Route path='/' element={<SharedLayout />}>

@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { BeatLoader } from "react-spinners";
 import { nanoid } from "@reduxjs/toolkit";
 import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export const FormSticker = ({formObj}) => {
      /* stickerColor: default, violet, green 
@@ -16,10 +17,12 @@ export const FormSticker = ({formObj}) => {
     inputs: [{name, type, initialValue}]
      */
     const {stickerColor, formHeading, submitBtnTxt, validationSchema, isLoadingSelector, onSubmit, inputs} = formObj;
-    const isLoading = useSelector(isLoadingSelector);
+    const loadingStatus = useSelector(isLoadingSelector);
+    const [isLoading, setIsLoading] = useState(false);
+    useEffect(() => { setIsLoading(loadingStatus)}, [loadingStatus]);
+
     const location = useLocation();
     const hasThreeFields = location.pathname === '/signup';
-
  
     return (
       <FormWrap color = {stickerColor} extraContent = {hasThreeFields}>

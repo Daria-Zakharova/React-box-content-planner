@@ -19,7 +19,7 @@ export const signUp = createAsyncThunk(
             return response;
         }
         catch(e){
-            return thunkAPI.rejectWithValue(e.message);
+            return thunkAPI.rejectWithValue({code: e.code, message: e.message});
         }
     }
 );
@@ -27,12 +27,11 @@ export const signUp = createAsyncThunk(
 export const logIn = createAsyncThunk(
     'auth/login', async (user, thunkAPI) => {
       try {
-        console.log(user);
         const response = await(await axios.post('/users/login', user)).data;
         setAuthHeader(response.token);
         return response;
       } catch (e) {
-        return thunkAPI.rejectWithValue(e.message);
+        return thunkAPI.rejectWithValue({code: e.code, message: e.message});
       }
     }
   );

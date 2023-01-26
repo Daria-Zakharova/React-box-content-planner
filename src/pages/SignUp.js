@@ -7,10 +7,15 @@ import { signUpSchema } from "utils/validation";
 
 export default function SignUpForm() {
     const dispatch = useDispatch();
-    const onSignUp = async ({name, email, password}, {resetForm}) => {
-        await dispatch(signUp({name, email, password}));
-        resetForm();
+
+    const onSignUp = async ({name, email, password}) => {
+      try {
+        await dispatch(signUp({name, email, password})).unwrap();
         toast.success(`User ${name} was registered`);
+      }
+      catch (e) {
+        toast.error(`Authorization failed. ${e.code === "ERR_BAD_REQUEST" ? "The email is already registered." : e.message}`);
+      }
     }
 
     const signUpFormObj = {

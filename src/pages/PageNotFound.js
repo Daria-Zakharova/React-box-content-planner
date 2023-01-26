@@ -7,6 +7,6 @@ export default function PageNotFound () {
     return (
     <AppCard>
         <PageHeading text = "404"/>
-        <Page404 seconds={10}/>
+        <Page404 seconds={8}/>
     </AppCard>)
 }

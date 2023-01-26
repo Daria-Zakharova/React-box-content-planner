@@ -3,19 +3,21 @@ import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { addContact } from "redux/contacts-and-filtering/operations";
 import { selectContacts, selectIsLoadingAdd } from "redux/contacts-and-filtering/selectors";
-import { NameIsInContacts } from "utils/checks/check-by-name";
+import { nameIsInContacts } from "utils/checks/check-by-name";
 import { capitalized } from "utils/formatting/capitalize";
+import { unified } from "utils/formatting/unify";
 import { addContactSchema } from "utils/validation";
 
 export const ContactForm = () => {
   const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
   const onContactAdd = async ({name, number}, {resetForm}) => {
-    name = name.toLowerCase().trim();
-    if(NameIsInContacts(contacts, name)) {
-      return toast.error(`${name} is already in contacts`);
+    const nameToAdd = unified(name);
+    const numberToAdd = number.trim();
+    if(nameIsInContacts(contacts, name)) {
+      return toast.error(`${capitalized(name)} is already in contacts`);
     }
-    await dispatch(addContact({name, number}));
+    await dispatch(addContact({name: nameToAdd, number: numberToAdd}));
     resetForm();
     toast.success(`Contact '${capitalized(name)}' has been added successfully`);
   }
